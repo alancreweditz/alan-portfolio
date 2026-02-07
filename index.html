@@ -239,6 +239,9 @@ footer{
   transition:.4s;
   z-index:999;
 }
+.mobile-menu a{
+  font-size:1rem;
+}
 .mobile-menu.active{left:0;}
 
 /* ================= RESPONSIVE ================= */
@@ -286,14 +289,13 @@ footer{
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#contact" class="mobile-link">Contact</a>
   <button class="theme-btn" id="themeBtnMobile">🌙</button>
 </div>
 
-<!-- HERO -->
 <section class="hero">
   <div>
     <h2>Hello, I'm <span class="gradient-text">Alan</span></h2>
@@ -315,7 +317,6 @@ footer{
   </div>
 </section>
 
-<!-- ABOUT -->
 <section id="about">
   <h2 class="section-title">About Me</h2>
   <div class="grid">
@@ -325,7 +326,6 @@ footer{
   </div>
 </section>
 
-<!-- SKILLS -->
 <section id="skills">
   <h2 class="section-title">Skills</h2>
   <div class="grid">
@@ -336,7 +336,6 @@ footer{
   </div>
 </section>
 
-<!-- PROJECTS -->
 <section id="projects">
   <h2 class="section-title">Projects</h2>
   <div class="grid">
@@ -365,7 +364,6 @@ footer{
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact">
   <h2 class="section-title">Contact</h2>
   <div class="grid">
@@ -426,13 +424,21 @@ function toggleTheme(){
 themeBtn.onclick = toggleTheme;
 themeBtnMobile.onclick = toggleTheme;
 
-/* MOBILE MENU */
+/* MOBILE MENU OPEN / CLOSE */
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
+const mobileLinks = document.querySelectorAll(".mobile-link");
 
 menuBtn.onclick = ()=>{
   mobileMenu.classList.toggle("active");
 };
+
+/* AUTO CLOSE MENU WHEN LINK CLICKED */
+mobileLinks.forEach(link=>{
+  link.addEventListener("click",()=>{
+    mobileMenu.classList.remove("active");
+  });
+});
 </script>
 
 </body>
