@@ -3,252 +3,262 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alan Crew Editz | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Alan Portfolio</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif;}
-html{scroll-behavior:smooth;}
-
-/* ================= THEME VARIABLES ================= */
+/* ================= GLOBAL THEME VARIABLES ================= */
 :root{
-  --bg:#020617;
-  --text:#e5e7eb;
-  --card:rgba(255,255,255,.06);
-  --border:rgba(255,255,255,.15);
-  --accent:#38bdf8;
-  --accent2:#7c3aed;
-  --accent3:#22d3ee;
-  --bg-gradient:radial-gradient(circle at top,#020617,#000);
+  --bg:#0b0f1a;
+  --text:#ffffff;
+  --accent:#00bfff;
+  --card:#141c2f;
+  --nav:#0f1629;
+  --shadow:0 20px 40px rgba(0,0,0,.4);
 }
 
-/* LIGHT MODE */
-.light-theme{
-  --bg:#f0f9ff;
-  --text:#020617;
-  --card:rgba(255,255,255,.7);
-  --border:rgba(0,0,0,.12);
-  --accent:#2563eb;
-  --accent2:#9333ea;
-  --accent3:#06b6d4;
-  --bg-gradient:linear-gradient(135deg,#e0f2fe,#fdf4ff,#ecfeff);
+body.light{
+  --bg:#f7f9fc;
+  --text:#0b0f1a;
+  --accent:#0066ff;
+  --card:#ffffff;
+  --nav:#ffffff;
+  --shadow:0 20px 40px rgba(0,0,0,.08);
+}
+
+/* ================= RESET ================= */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
 }
 
 body{
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;
-  padding-top:80px;
   transition:.4s;
-}
-a{text-decoration:none;color:inherit;}
-section{
-  padding:80px 10%;
-  scroll-margin-top:90px;
+  padding-top:80px;
+  overflow-x:hidden;
 }
 
-/* ================= BACKGROUND ANIMATION ================= */
-.bg-glow{
-  position:fixed;
-  inset:0;
-  z-index:-1;
-  background:var(--bg-gradient);
-}
-.glow{
-  position:absolute;
-  width:500px;height:500px;
-  border-radius:50%;
-  filter:blur(180px);
-  opacity:.6;
-  animation:float 20s infinite alternate;
-}
-.g1{background:var(--accent2);top:-150px;left:-150px;}
-.g2{background:var(--accent);bottom:-150px;right:-150px;}
-.g3{background:var(--accent3);top:40%;left:50%;}
-
-@keyframes float{
-  0%{transform:translate(0,0) scale(1);}
-  50%{transform:translate(200px,-150px) scale(1.2);}
-  100%{transform:translate(-150px,150px) scale(1);}
-}
-
-/* ================= HEADER (DESKTOP TOP MENU) ================= */
+/* ================= HEADER ================= */
 header{
   position:fixed;
-  top:0;left:0;
+  top:0;
   width:100%;
+  height:80px;
+  background:var(--nav);
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  padding:15px 10%;
-  background:rgba(0,0,0,.5);
-  backdrop-filter:blur(12px);
-  z-index:100;
-  transition:.3s;
+  justify-content:space-between;
+  padding:0 6%;
+  z-index:1000;
+  box-shadow:var(--shadow);
 }
-header h1{
-  font-size:1.6rem;
+
+.logo{
+  font-size:1.4rem;
   font-weight:700;
-  background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  color:var(--accent);
 }
+
 nav{
   display:flex;
-  align-items:center;
-  gap:18px;
+  gap:25px;
 }
+
 nav a{
+  color:var(--text);
+  text-decoration:none;
   font-size:.95rem;
   transition:.3s;
 }
-nav a:hover{color:var(--accent);}
 
-/* THEME BUTTON */
+nav a:hover{
+  color:var(--accent);
+}
+
+/* ================= THEME BUTTON ================= */
 .theme-btn{
-  padding:7px 13px;
-  border-radius:8px;
-  border:1px solid var(--border);
-  background:var(--card);
+  background:var(--accent);
+  border:none;
+  padding:8px 14px;
+  border-radius:20px;
+  color:#fff;
   cursor:pointer;
-  font-size:.9rem;
+  font-size:.85rem;
+}
+
+/* ================= HAMBURGER ================= */
+.menu-btn{
+  display:none;
+  flex-direction:column;
+  gap:6px;
+  cursor:pointer;
+}
+
+.menu-btn span{
+  width:28px;
+  height:3px;
+  background:var(--text);
   transition:.3s;
 }
-.theme-btn:hover{transform:scale(1.05);}
+
+/* ================= MOBILE SIDE MENU ================= */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  left:-260px;
+  width:260px;
+  height:100vh;
+  background:var(--nav);
+  padding:100px 25px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  transition:.4s ease;
+  z-index:999;
+  box-shadow:var(--shadow);
+}
+
+.mobile-menu a{
+  color:var(--text);
+  text-decoration:none;
+  font-size:1.05rem;
+}
+
+.mobile-menu.active{
+  left:0;
+}
 
 /* ================= HERO ================= */
+section{
+  padding:80px 6%;
+  scroll-margin-top:90px;
+}
+
 .hero{
-  min-height:100vh;
   display:grid;
-  grid-template-columns:1.2fr .8fr;
+  grid-template-columns:1fr 1fr;
   gap:50px;
   align-items:center;
 }
-.hero h2{font-size:3rem;line-height:1.2;}
-.gradient-text{
-  background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent3));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-.typing{font-size:1.2rem;color:var(--accent);margin:12px 0 22px;font-weight:600;}
-.hero p{max-width:520px;opacity:.85;margin-bottom:30px;}
-.btn{
-  padding:12px 26px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  font-weight:600;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:#fff;
-  transition:.3s;
-}
-.btn:hover{transform:scale(1.05);}
 
-/* ================= PROFILE ================= */
-.profile{display:flex;flex-direction:column;align-items:center;gap:25px;}
+.hero h1{
+  font-size:3rem;
+  line-height:1.2;
+}
+
+.hero span{
+  color:var(--accent);
+}
+
+.hero p{
+  margin-top:15px;
+  font-size:1.05rem;
+  opacity:.9;
+}
+
 .profile img{
-  width:200px;height:200px;
+  width:220px;
+  height:220px;
   border-radius:50%;
-  object-fit:cover;
-  border:3px solid var(--border);
-  box-shadow:0 0 50px var(--accent2);
-  transition:.4s;
+  border:4px solid var(--accent);
+  box-shadow:var(--shadow);
 }
-.profile img:hover{
-  transform:scale(1.1);
-  box-shadow:0 0 80px var(--accent3);
-}
-
-/* ================= CARDS ================= */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:25px;
-}
-.card{
-  background:var(--card);
-  backdrop-filter:blur(16px);
-  border-radius:20px;
-  padding:22px;
-  border:1px solid var(--border);
-  transition:.4s;
-}
-.card:hover{
-  transform:translateY(-10px) scale(1.03);
-  border:1px solid var(--accent);
-}
-.card h3{color:var(--accent);margin-bottom:10px;}
 
 /* ================= PROJECTS ================= */
-.project-card{
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  cursor:pointer;
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
 }
+
+.project-card{
+  background:var(--card);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transition:.35s;
+}
+
+.project-card:hover{
+  transform:translateY(-10px);
+}
+
 .project-card img{
   width:100%;
-  border-radius:12px;
-  border:1px solid var(--border);
+  height:170px;
+  object-fit:cover;
 }
-.project-card p{
+
+.project-content{
+  padding:18px;
+}
+
+.project-content h3{
+  margin-bottom:8px;
+}
+
+.project-content p{
   font-size:.9rem;
   opacity:.85;
 }
-.view-btn{
-  font-size:.9rem;
-  color:var(--accent);
-  font-weight:600;
-}
 
-/* ================= TITLES ================= */
-.section-title{font-size:2rem;margin-bottom:35px;}
+.project-content a{
+  display:inline-block;
+  margin-top:12px;
+  color:var(--accent);
+  text-decoration:none;
+  font-size:.9rem;
+}
 
 /* ================= FOOTER ================= */
 footer{
   text-align:center;
-  padding:30px 10%;
+  padding:40px;
   opacity:.7;
-  border-top:1px solid var(--border);
 }
 
-/* ================= MOBILE MENU (LEFT SIDE) ================= */
+/* ================= BACKGROUND ANIMATION (DARK MODE ONLY) ================= */
+.bg-animation{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  z-index:-1;
+  overflow:hidden;
+}
+
+.bg-animation span{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:var(--accent);
+  border-radius:50%;
+  animation:float 12s linear infinite;
+  opacity:.5;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh);}
+  100%{transform:translateY(-10vh);}
+}
+
+body.light .bg-animation{
+  display:none;
+}
+
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
 
-  body{
-    padding-top:0;
-    padding-left:220px; /* space for sidebar */
-  }
-
-  header{
-    width:220px;
-    height:100vh;
-    flex-direction:column;
-    justify-content:flex-start;
-    align-items:flex-start;
-    padding:20px;
-    left:0;
-    top:0;
-  }
-
   nav{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:15px;
-    margin-top:30px;
+    display:none;
   }
 
-  nav a{
-    font-size:1rem;
-  }
-
-  .theme-btn{
-    margin-top:20px;
-  }
-
-  section{
-    padding:60px 7%;
+  .menu-btn{
+    display:flex;
   }
 
   .hero{
@@ -256,161 +266,117 @@ footer{
     text-align:center;
   }
 
-  .hero h2{font-size:2.2rem;}
-  .profile img{width:150px;height:150px;}
-}
+  .hero h1{
+    font-size:2.2rem;
+  }
 
-/* EXTRA SMALL MOBILE */
-@media(max-width:500px){
-  body{padding-left:190px;}
-  header{width:190px;}
+  .profile img{
+    width:160px;
+    height:160px;
+  }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-glow">
-  <div class="glow g1"></div>
-  <div class="glow g2"></div>
-  <div class="glow g3"></div>
-</div>
+<div class="bg-animation" id="bg"></div>
 
 <header>
-  <h1>Alan Crew Editz</h1>
+  <div class="logo">Alan.</div>
+
   <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
+    <a href="#home">Home</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
-    <button class="theme-btn" id="themeBtn">🌙</button>
   </nav>
+
+  <button class="theme-btn" id="themeToggle">🌙 Dark</button>
+
+  <div class="menu-btn" id="menuBtn">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </header>
 
-<section class="hero">
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#projects">Projects</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<section class="hero" id="home">
   <div>
-    <h2>Hello, I'm <span class="gradient-text">Alan</span></h2>
-    <div class="typing" id="typing"></div>
-    <p>A creative Video Editor, Graphic Designer & Web Developer building modern digital experiences.</p>
-    <a href="https://drive.google.com/file/d/1ly0HUwSIOlHuTizxnvAiV6LwYtM8UTgX/view" target="_blank">
-      <button class="btn">Download CV</button>
-    </a>
+    <h1>Hello, I'm <span>Alan</span></h1>
+    <p>Creative designer & developer. I build modern digital experiences.</p>
   </div>
-
   <div class="profile">
-    <img src="https://i.imgur.com/pfzdOLS.jpeg" alt="Alan">
-    <div class="card">
-      <h3>Quick Info</h3>
-      <p>📍 Sri Lanka</p>
-      <p>💻 Designer | Editor | Developer</p>
-      <p>🚀 Freelancer</p>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <h2 class="section-title">About Me</h2>
-  <div class="grid">
-    <div class="card">
-      <p>I design websites, edit videos, and create digital projects with modern creative style.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 class="section-title">Skills</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Creative Tools</h3>
-      <p>Photoshop, Illustrator, Premiere Pro, After Effects, Filmora, HTML, CSS, JavaScript</p>
-    </div>
+    <img src="https://via.placeholder.com/300" alt="">
   </div>
 </section>
 
 <section id="projects">
-  <h2 class="section-title">Projects</h2>
-  <div class="grid">
+  <h2>Projects</h2>
+  <div class="projects">
 
-    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
-      <img src="https://i.imgur.com/5OHHK1E.jpeg">
-      <h3>Portfolio Website</h3>
-      <p>Modern responsive portfolio website built with HTML, CSS and JavaScript.</p>
-      <span class="view-btn">View Project →</span>
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+      <img src="https://via.placeholder.com/600x400" alt="">
+      <div class="project-content">
+        <h3>Project One</h3>
+        <p>Modern responsive website design.</p>
+        <a href="https://example.com" target="_blank">Open Project →</a>
+      </div>
     </div>
 
-    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
-      <img src="https://i.imgur.com/nn6Smd3.jpeg">
-      <h3>Graphic Design Works</h3>
-      <p>Creative posters, banners and social media designs.</p>
-      <span class="view-btn">View Project →</span>
-    </div>
-
-    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
-      <img src="https://i.imgur.com/x1EANoa.jpeg">
-      <h3>Video Editing Projects</h3>
-      <p>Cinematic video edits and motion graphics projects.</p>
-      <span class="view-btn">View Project →</span>
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+      <img src="https://via.placeholder.com/600x400" alt="">
+      <div class="project-content">
+        <h3>Project Two</h3>
+        <p>Creative UI/UX portfolio layout.</p>
+        <a href="https://example.com" target="_blank">Open Project →</a>
+      </div>
     </div>
 
   </div>
 </section>
 
 <section id="contact">
-  <h2 class="section-title">Contact</h2>
-  <div class="grid">
-    <div class="card">
-      <p>Email: alancreweditzofficial@gmail.com</p>
-      <p>Instagram: @alancreweditzofficial</p>
-      <p>Phone: +94 743134551</p>
-    </div>
-  </div>
+  <h2>Contact</h2>
+  <p>Email: yourmail@gmail.com</p>
 </section>
 
 <footer>
-  <p>© 2026 Alan Crew Editz | All Rights Reserved</p>
+  © 2026 Alan Portfolio
 </footer>
 
 <script>
-/* typing effect */
-const text = ["Video Editor", "Graphic Designer", "Web Developer", "Freelancer"];
-let index = 0, char = 0;
-const typing = document.getElementById("typing");
+/* ================= THEME TOGGLE ================= */
+const toggle=document.getElementById("themeToggle");
 
-function type(){
-  if(char < text[index].length){
-    typing.innerHTML += text[index].charAt(char);
-    char++;
-    setTimeout(type,100);
-  }else{
-    setTimeout(erase,1500);
-  }
-}
-function erase(){
-  if(char > 0){
-    typing.innerHTML = text[index].substring(0,char-1);
-    char--;
-    setTimeout(erase,50);
-  }else{
-    index = (index+1)%text.length;
-    setTimeout(type,300);
-  }
-}
-type();
-
-/* DARK / LIGHT MODE WITH MEMORY */
-const themeBtn = document.getElementById("themeBtn");
-const savedTheme = localStorage.getItem("theme");
-
-if(savedTheme === "light"){
-  document.body.classList.add("light-theme");
-  themeBtn.textContent = "☀️";
-}
-
-themeBtn.onclick = () => {
-  document.body.classList.toggle("light-theme");
-  const isLight = document.body.classList.contains("light-theme");
-  themeBtn.textContent = isLight ? "☀️" : "🌙";
-  localStorage.setItem("theme", isLight ? "light" : "dark");
+toggle.onclick=()=>{
+  document.body.classList.toggle("light");
+  toggle.innerText=document.body.classList.contains("light")?"☀️ Light":"🌙 Dark";
 };
+
+/* ================= MOBILE MENU ================= */
+const menuBtn=document.getElementById("menuBtn");
+const mobileMenu=document.getElementById("mobileMenu");
+
+menuBtn.onclick=()=>{
+  mobileMenu.classList.toggle("active");
+};
+
+/* ================= BACKGROUND PARTICLES ================= */
+const bg=document.getElementById("bg");
+
+for(let i=0;i<40;i++){
+  let s=document.createElement("span");
+  s.style.left=Math.random()*100+"%";
+  s.style.animationDuration=6+Math.random()*10+"s";
+  bg.appendChild(s);
+}
 </script>
 
 </body>
