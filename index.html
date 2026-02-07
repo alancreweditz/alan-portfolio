@@ -20,16 +20,19 @@ html{scroll-behavior:smooth;}
   --accent:#38bdf8;
   --accent2:#7c3aed;
   --accent3:#22d3ee;
+  --bg-gradient:radial-gradient(circle at top,#020617,#000);
 }
 
+/* LIGHT MODE */
 .light-theme{
-  --bg:#f8fafc;
+  --bg:#f0f9ff;
   --text:#020617;
-  --card:rgba(0,0,0,.05);
-  --border:rgba(0,0,0,.15);
+  --card:rgba(255,255,255,.7);
+  --border:rgba(0,0,0,.12);
   --accent:#2563eb;
   --accent2:#9333ea;
-  --accent3:#0891b2;
+  --accent3:#06b6d4;
+  --bg-gradient:linear-gradient(135deg,#e0f2fe,#fdf4ff,#ecfeff);
 }
 
 body{
@@ -45,22 +48,36 @@ section{
   scroll-margin-top:90px;
 }
 
-/* ================= BACKGROUND GLOW ================= */
-.bg-glow{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at top,var(--bg),#000);}
-.glow{position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(200px);opacity:.8;animation:float 20s infinite alternate;}
+/* ================= BACKGROUND ANIMATION ================= */
+.bg-glow{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  background:var(--bg-gradient);
+}
+.glow{
+  position:absolute;
+  width:500px;height:500px;
+  border-radius:50%;
+  filter:blur(180px);
+  opacity:.6;
+  animation:float 20s infinite alternate;
+}
 .g1{background:var(--accent2);top:-150px;left:-150px;}
 .g2{background:var(--accent);bottom:-150px;right:-150px;}
 .g3{background:var(--accent3);top:40%;left:50%;}
+
 @keyframes float{
   0%{transform:translate(0,0) scale(1);}
-  50%{transform:translate(250px,-200px) scale(1.2);}
-  100%{transform:translate(-200px,200px) scale(1);}
+  50%{transform:translate(200px,-150px) scale(1.2);}
+  100%{transform:translate(-150px,150px) scale(1);}
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER (DESKTOP TOP MENU) ================= */
 header{
   position:fixed;
-  top:0;width:100%;
+  top:0;left:0;
+  width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -68,6 +85,7 @@ header{
   background:rgba(0,0,0,.5);
   backdrop-filter:blur(12px);
   z-index:100;
+  transition:.3s;
 }
 header h1{
   font-size:1.6rem;
@@ -76,21 +94,25 @@ header h1{
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
+nav{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
 nav a{
-  margin-left:20px;
   font-size:.95rem;
   transition:.3s;
 }
 nav a:hover{color:var(--accent);}
 
-/* ================= THEME BUTTON ================= */
+/* THEME BUTTON */
 .theme-btn{
-  padding:8px 14px;
+  padding:7px 13px;
   border-radius:8px;
   border:1px solid var(--border);
   background:var(--card);
   cursor:pointer;
-  font-size:.85rem;
+  font-size:.9rem;
   transition:.3s;
 }
 .theme-btn:hover{transform:scale(1.05);}
@@ -130,12 +152,12 @@ nav a:hover{color:var(--accent);}
   border-radius:50%;
   object-fit:cover;
   border:3px solid var(--border);
-  box-shadow:0 0 60px var(--accent2);
+  box-shadow:0 0 50px var(--accent2);
   transition:.4s;
 }
 .profile img:hover{
   transform:scale(1.1);
-  box-shadow:0 0 90px var(--accent3);
+  box-shadow:0 0 80px var(--accent3);
 }
 
 /* ================= CARDS ================= */
@@ -146,7 +168,7 @@ nav a:hover{color:var(--accent);}
 }
 .card{
   background:var(--card);
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(16px);
   border-radius:20px;
   padding:22px;
   border:1px solid var(--border);
@@ -163,6 +185,7 @@ nav a:hover{color:var(--accent);}
   display:flex;
   flex-direction:column;
   gap:12px;
+  cursor:pointer;
 }
 .project-card img{
   width:100%;
@@ -173,8 +196,8 @@ nav a:hover{color:var(--accent);}
   font-size:.9rem;
   opacity:.85;
 }
-.project-card a{
-  margin-top:8px;
+.view-btn{
+  font-size:.9rem;
   color:var(--accent);
   font-weight:600;
 }
@@ -190,25 +213,43 @@ footer{
   border-top:1px solid var(--border);
 }
 
-/* ================= MOBILE ================= */
+/* ================= MOBILE MENU (LEFT SIDE) ================= */
 @media(max-width:900px){
 
-  body{padding-top:95px;}
+  body{
+    padding-top:0;
+    padding-left:220px; /* space for sidebar */
+  }
 
   header{
+    width:220px;
+    height:100vh;
     flex-direction:column;
-    gap:10px;
-    padding:12px 6%;
+    justify-content:flex-start;
+    align-items:flex-start;
+    padding:20px;
+    left:0;
+    top:0;
   }
 
   nav{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    justify-content:center;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+    margin-top:30px;
   }
 
-  section{padding:60px 6%;}
+  nav a{
+    font-size:1rem;
+  }
+
+  .theme-btn{
+    margin-top:20px;
+  }
+
+  section{
+    padding:60px 7%;
+  }
 
   .hero{
     grid-template-columns:1fr;
@@ -217,6 +258,12 @@ footer{
 
   .hero h2{font-size:2.2rem;}
   .profile img{width:150px;height:150px;}
+}
+
+/* EXTRA SMALL MOBILE */
+@media(max-width:500px){
+  body{padding-left:190px;}
+  header{width:190px;}
 }
 </style>
 </head>
@@ -235,7 +282,7 @@ footer{
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#contact">Contact</a>
-    <button class="theme-btn" onclick="toggleTheme()">🌙 / ☀️</button>
+    <button class="theme-btn" id="themeBtn">🌙</button>
   </nav>
 </header>
 
@@ -283,28 +330,25 @@ footer{
   <h2 class="section-title">Projects</h2>
   <div class="grid">
 
-    <!-- PROJECT 1 -->
-    <div class="card project-card">
-      <img src="https://i.imgur.com/5OHHK1E.jpeg" alt="Project">
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/5OHHK1E.jpeg">
       <h3>Portfolio Website</h3>
-      <p>Modern responsive portfolio website built with HTML, CSS and JS.</p>
-      <a href="https://i.imgur.com/5OHHK1E.jpeg" target="_blank">View Project →</a>
+      <p>Modern responsive portfolio website built with HTML, CSS and JavaScript.</p>
+      <span class="view-btn">View Project →</span>
     </div>
 
-    <!-- PROJECT 2 -->
-    <div class="card project-card">
-      <img src="https://i.imgur.com/nn6Smd3.jpeg" alt="Project">
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/nn6Smd3.jpeg">
       <h3>Graphic Design Works</h3>
-      <p>Creative posters and social media designs.</p>
-      <a href="https://i.imgur.com/nn6Smd3.jpeg" target="_blank">View Project →</a>
+      <p>Creative posters, banners and social media designs.</p>
+      <span class="view-btn">View Project →</span>
     </div>
 
-    <!-- PROJECT 3 -->
-    <div class="card project-card">
-      <img src="https://i.imgur.com/x1EANoa.jpeg" alt="Project">
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/x1EANoa.jpeg">
       <h3>Video Editing Projects</h3>
-      <p>Cinematic video edits and motion graphics.</p>
-      <a href="https://i.imgur.com/x1EANoa.jpeg" target="_blank">View Project →</a>
+      <p>Cinematic video edits and motion graphics projects.</p>
+      <span class="view-btn">View Project →</span>
     </div>
 
   </div>
@@ -352,16 +396,22 @@ function erase(){
 }
 type();
 
-/* dark / light mode */
-function toggleTheme(){
-  document.body.classList.toggle("light-theme");
+/* DARK / LIGHT MODE WITH MEMORY */
+const themeBtn = document.getElementById("themeBtn");
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme === "light"){
+  document.body.classList.add("light-theme");
+  themeBtn.textContent = "☀️";
 }
+
+themeBtn.onclick = () => {
+  document.body.classList.toggle("light-theme");
+  const isLight = document.body.classList.contains("light-theme");
+  themeBtn.textContent = isLight ? "☀️" : "🌙";
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+};
 </script>
 
 </body>
 </html>
-
-
-
-
-
