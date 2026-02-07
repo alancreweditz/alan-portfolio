@@ -212,10 +212,7 @@ footer{
   border-top:1px solid var(--border);
 }
 
-/* ================================================= */
-/* ✅ MOBILE RESPONSIVE FIX (ONLY CODE CHANGED HERE) */
-/* ================================================= */
-
+/* ================= MOBILE MENU ================= */
 .menu-btn{
   display:none;
   flex-direction:column;
@@ -228,7 +225,6 @@ footer{
   background:var(--text);
 }
 
-/* mobile sidebar menu */
 .mobile-menu{
   position:fixed;
   top:0;
@@ -243,41 +239,25 @@ footer{
   transition:.4s;
   z-index:999;
 }
-.mobile-menu.active{
-  left:0;
-}
+.mobile-menu.active{left:0;}
 
+/* ================= RESPONSIVE ================= */
 @media(max-width:900px){
 
-  body{
-    padding-top:70px;
-  }
+  body{padding-top:70px;}
 
-  nav{
-    display:none; /* hide desktop menu */
-  }
+  nav{display:none;}
+  .menu-btn{display:flex;}
 
-  .menu-btn{
-    display:flex; /* show hamburger */
-  }
-
-  section{
-    padding:60px 7%;
-  }
+  section{padding:60px 7%;}
 
   .hero{
     grid-template-columns:1fr;
     text-align:center;
   }
 
-  .hero h2{
-    font-size:2.2rem;
-  }
-
-  .profile img{
-    width:150px;
-    height:150px;
-  }
+  .hero h2{font-size:2.2rem;}
+  .profile img{width:150px;height:150px;}
 }
 </style>
 </head>
@@ -301,9 +281,7 @@ footer{
   </nav>
 
   <div class="menu-btn" id="menuBtn">
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span>
   </div>
 </header>
 
@@ -315,6 +293,7 @@ footer{
   <button class="theme-btn" id="themeBtnMobile">🌙</button>
 </div>
 
+<!-- HERO -->
 <section class="hero">
   <div>
     <h2>Hello, I'm <span class="gradient-text">Alan</span></h2>
@@ -335,6 +314,72 @@ footer{
     </div>
   </div>
 </section>
+
+<!-- ABOUT -->
+<section id="about">
+  <h2 class="section-title">About Me</h2>
+  <div class="grid">
+    <div class="card">
+      <p>I design websites, edit videos, and create digital projects with modern creative style.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <h2 class="section-title">Skills</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Creative Tools</h3>
+      <p>Photoshop, Illustrator, Premiere Pro, After Effects, Filmora, HTML, CSS, JavaScript</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <h2 class="section-title">Projects</h2>
+  <div class="grid">
+
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/5OHHK1E.jpeg">
+      <h3>Portfolio Website</h3>
+      <p>Modern responsive portfolio website built with HTML, CSS and JavaScript.</p>
+      <span class="view-btn">View Project →</span>
+    </div>
+
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/nn6Smd3.jpeg">
+      <h3>Graphic Design Works</h3>
+      <p>Creative posters, banners and social media designs.</p>
+      <span class="view-btn">View Project →</span>
+    </div>
+
+    <div class="card project-card" onclick="window.open('https://example.com','_blank')">
+      <img src="https://i.imgur.com/x1EANoa.jpeg">
+      <h3>Video Editing Projects</h3>
+      <p>Cinematic video edits and motion graphics projects.</p>
+      <span class="view-btn">View Project →</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">Contact</h2>
+  <div class="grid">
+    <div class="card">
+      <p>Email: alancreweditzofficial@gmail.com</p>
+      <p>Instagram: @alancreweditzofficial</p>
+      <p>Phone: +94 743134551</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Alan Crew Editz | All Rights Reserved</p>
+</footer>
 
 <script>
 /* typing effect */
@@ -363,7 +408,7 @@ function erase(){
 }
 type();
 
-/* DARK / LIGHT MODE */
+/* THEME MODE */
 const themeBtn = document.getElementById("themeBtn");
 const themeBtnMobile = document.getElementById("themeBtnMobile");
 const savedTheme = localStorage.getItem("theme");
